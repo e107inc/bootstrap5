@@ -10,7 +10,7 @@ if(!defined('e107_INIT'))
 	class theme implements e_theme_render
 	{
 
-        function __construct()
+        public function _init()
         {
 
             e107::lan('theme');
