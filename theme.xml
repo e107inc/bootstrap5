@@ -17,7 +17,7 @@
 		<library name="fontawesome" version="5" scope="all"/>
 	</libraries>
 	<stylesheets>
-		<css file="style.css" name="Default"/>
+		<css file="style.css" name="Default" />
 	</stylesheets>
 	<screenshots>
 		<image>preview_frontend.png</image>

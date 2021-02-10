@@ -65,7 +65,62 @@ class theme_shortcodes extends e_shortcode
 
 	}
 
+	/**
+	 * Will only function on the news page.
+	 * @example {THEME_NEWS_BANNER: type=date}
+	 * @example, {THEME_NEWS_BANNER: type=image}
+	 * @example {THEME_NEWS_BANNER: type=author}
+	 * @param null $parm
+	 * @return string|null
+	 */
+	function sc_theme_news_banner($parm=null)
+	{
+		/** @var news_shortcodes $news */
+		$sc = e107::getScBatch('news');
+		$news = $sc->getScVar('news_item');
 
+		$ret = '';
+		$type = varset($parm['type']);
+
+		switch($type)
+		{
+			case "title":
+				$ret = $sc->sc_news_title();
+				break;
+
+			case "date":
+				$ret = $sc->sc_news_date();
+				break;
+
+			case "comment":
+				$ret = $sc->sc_news_comment_count();
+				break;
+
+			case "author":
+				$ret = $sc->sc_news_author();
+				break;
+
+			case "image":
+			default:
+			if(!empty($news['news_thumbnail']))
+			{
+				$tmp = explode(',', $news['news_thumbnail']);
+
+				$opts = array(
+					'w' => 1800,
+					'h' => null,
+					'crop' => false,
+				);
+
+				$ret = e107::getParser()->toImage($tmp[0], $opts);
+			}
+			
+		}
+
+		return $ret;
+
+
+	}
 
 
 
