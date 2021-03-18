@@ -37,9 +37,6 @@
 			<layout name='singlesignup' title='Register Page' >
 			<custompages>signup</custompages>
 		</layout>
-		<layout name='singlecontact' title='Contact page' >
-			<custompages>contact</custompages>
-		</layout>
 		<layout name='bare' title='Starter Bare template' >
 			<custompages>guide</custompages>
 		</layout>

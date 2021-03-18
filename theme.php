@@ -245,7 +245,7 @@ if(!defined('e107_INIT'))
 
 					if(!empty($caption))
 					{
-						echo '<div class="my-4">' . $caption . '</div>';
+						echo '<h4>' . $caption . '</h4>';
 					}
 					echo $text;
 
