@@ -66,6 +66,16 @@ class theme_shortcodes extends e_shortcode
 	}
 
 	/**
+	 * Optional {---CAPTION---} processing.
+	 * @shortcode {---CAPTION---}
+	 * @return string
+	 */
+	function sc_caption($caption)
+	{
+		return $caption; 
+	}
+
+	/**
 	 * Will only function on the news page.
 	 * @example {THEME_NEWS_BANNER: type=date}
 	 * @example, {THEME_NEWS_BANNER: type=image}

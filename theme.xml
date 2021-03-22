@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<e107Theme name="Bootstrap 5" version="1.0" date="2020-12-29" compatibility="2.3.1">
+<e107Theme name="Bootstrap 5" version="1.0" date="2021-03-22" compatibility="2.3.1">
 	<author name ="e107 Inc" email="e107inc@something.com" url="http://e107.org" />
-	<summary>Bootstrap5 generic theme (under development)</summary>
-	<description>For testing only</description>
+	<summary>Bootstrap 5 basic theme</summary>
+	<description>A starter template for bootstrap5 themes.</description>
 	<category>generic</category>
 	<plugins>
 		<plugin name='social' url='core' />
@@ -11,10 +11,11 @@
 	<keywords>
 		<word>bootstrap</word>
 		<word>clean</word>
+        <word>wireframe</word>
 	</keywords>
 	<libraries>
-		<library name="bootstrap" version="5" scope="all"/>
-		<library name="fontawesome" version="5" scope="all"/>
+		<library name="bootstrap" version="5" scope="front"/>
+		<library name="fontawesome" version="5" scope="front"/>
 	</libraries>
 	<stylesheets>
 		<css file="style.css" name="Default" />
@@ -26,26 +27,21 @@
 		<layout name='home' title='Home Page' >
 			<custompages>FRONTPAGE</custompages>
 		</layout>
-			<layout name='full' title='Full' >
+			<layout name='full' title='Full Page' >
 			<custompages>forum/ download/</custompages>
 		</layout>
 		<layout name='sidebar_left' title='Sidebar (left)' />
 		<layout name='sidebar_right' title='Sidebar (right)' default='true' />
-		<layout name='singlelogin' title='Login Screen' >
-			<custompages>login fpw</custompages>
+		<layout name='splash' title='Splash Page' >
+			<custompages>login fpw signup</custompages>
 		</layout>
-			<layout name='singlesignup' title='Register Page' >
-			<custompages>signup</custompages>
-		</layout>
-		<layout name='bare' title='Starter Bare template' >
-			<custompages>guide</custompages>
+		<layout name='bare' title='Bare Page' >
+			<custompages></custompages>
 		</layout>
 	</layouts>
 	<themePrefs>
-		<pref name='map'>Insert your own iframe code for google maps</pref>
 		<pref name='cardmenu_look'>1</pref>
 		<pref name='inlinecss'></pref>
-		<pref name='inlinejs'></pref>
 		<pref name='login_iframe'></pref>
 	</themePrefs>
 </e107Theme>

@@ -77,91 +77,65 @@ if(!defined('e107_INIT'))
 		{
 
 			$style = varset($options['setStyle'], 'default');
-			
-			//this should be displayed only in e_debug mode
-			
-            echo "\n<!-- tablestyle initial:  style=" . $style . "  mode=" . $mode . "  UniqueId=" . varset($options['uniqueId']) . " -->\n\n";
 
-
-			if($mode == 'wmessage' OR $mode == 'wm')
+			// Override style based on mode.
+			switch($mode)
 			{
-				$style = 'wmessage';
+				case 'wmessage':
+				case 'wm':
+					$style = 'wmessage';
+					break;
+
+				case "login_page":
+				case "fpw":
+				case "coppa":
+				case "signup":
+					$style = 'splash';
+					break;
+
 			}
- 
+
+			echo "\n<!-- tablestyle initial:  style=" . $style . "  mode=" . $mode . "  UniqueId=" . varset($options['uniqueId']) . " -->\n\n";
+
 			
 			if($style === 'listgroup' && empty($options['list']))
 			{
 				$style = 'cardmenu';
 			}
 
- 
 			if($style === 'cardmenu' && !empty($options['list']))
 			{
 				$style = 'listgroup';
 			}
-    
-      // in iframe SETSTYLE is ignored
-			if($mode === 'login_page'  )
-			{                  
-				$style = 'singlelogin';
-			}
-			if($mode === 'fpw'  )
-			{                  
-				$style = 'singlelogin';
-			}
-			if($mode === 'coppa'  )
-			{                  
-				$style = 'singlelogin';
-			}
-			if($mode === 'signup'  )
-			{                  
-				$style = 'singlelogin';
-			}      
-      
-            			
+
 			/* Changing card look via prefs */
 			if(!e107::pref('theme', 'cardmenu_look') && $style == 'cardmenu')
 			{
 				$style = 'menu';
 			}
 
-			echo "\n<!-- tablestyle:  style=" . $style . "  mode=" . $mode . "  UniqueId=" . varset($options['uniqueId']) . " -->\n\n";
+	//		echo "\n<!-- tablestyle:  style=" . $style . "  mode=" . $mode . "  UniqueId=" . varset($options['uniqueId']) . " -->\n\n";
 
-			echo "\n<!-- \n";
-
-			echo json_encode($options, JSON_PRETTY_PRINT);
-
-			echo "\n-->\n\n";
+			if(deftrue('e_DEBUG'))
+			{
+				echo "\n<!-- \n";
+				echo json_encode($options, JSON_PRETTY_PRINT);
+				echo "\n-->\n\n";
+			}
 
 			switch($style)
 			{
 
-				/*  case 'home':
-					  echo $caption;
-					  echo $text;
-				  break;
+				case 'wmessage':
+				    echo '<div class="jumbotron"><div class="container text-center">';
+				        if(!empty($caption))
+				        {
+				          echo '<h1 class="display-4">'.$caption.'</h1>';
+				        }
 
-				  case 'menu':
-					  echo $caption;
-					  echo $text;
-				  break;
-
-				  case 'full':
-					  echo $caption;
-					  echo $text;
-				  break;
-		*/
-		
-				case 'wmessage':		
-		    echo '<div class="jumbotron"><div class="container text-center">';
-		        if(!empty($caption))
-		        {
-		          echo '<h1 class="display-4">'.$caption.'</h1>';
-		        }
-		       
-		    echo '<p class="lead">'.$this->remove_ptags($text).'</p>';
-		    echo '</div></div>';
-        	break;
+				    echo '<p class="lead">'.$this->remove_ptags($text).'</p>';
+				    echo '</div></div>';
+	            break;
     
 				case 'bare':
 					echo $this->remove_ptags($text);
@@ -170,7 +144,7 @@ if(!defined('e107_INIT'))
 
 				case 'nocaption':
 				case 'main':
-					echo $text;;
+					echo $text;
 					break;
 
 
@@ -217,26 +191,30 @@ if(!defined('e107_INIT'))
 					echo '</div>';
 					break;
           
-         case 'singlelogin': {   
-         echo '<div class="container  justify-content-center text-center my-5" id="fpw-page">
-                 <div class="row  align-items-center">';
-          
-            echo '<div class="card card-signin col-md-6 offset-md-3 " id="login-template"><div class="card-body">';
-  					if(!empty($caption))
-  					{
-  						echo '<h5 class="card-title text-center">' . $caption . '</h5>';
-  					}
-  					echo $text;    
-  					if(!empty($options['footer'])) // XXX @see news-months menu.
-  			        {
-  			            echo '<div class="card-footer">
-  		                      '.$options['footer'].'
-  		                    </div>';
-  			        }
-  					echo '</div></div>';
-            echo '</div></div>';
+            case 'splash':
+	            echo '<div class="container  justify-content-center text-center my-5" id="'.$mode.'">
+	                 <div class="row  align-items-center">
+	                 <div class="card card-signin col-md-6 offset-md-3 " id="login-template"><div class="card-body">';
+
+                if(!empty($caption))
+                {
+  					echo '<h5 class="card-title text-center">' . $caption . '</h5>';
+  				}
+
+  				echo $text;
+
+  				if(!empty($options['footer'])) // XXX @see news-months menu.
+  			    {
+  			        echo '<div class="card-footer">
+  		                   '.$options['footer'].'
+  		                   </div>';
+  			    }
+
+  				echo '</div></div>
+						</div></div>';
+
   					break;                
-         }
+
 
 			   default:
 

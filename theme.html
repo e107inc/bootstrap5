@@ -1,8 +1,5 @@
 
 <body id="page-top" class="{LAYOUT_ID}" {BODY_ONLOAD} >
-
-{---MODAL---}
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a class="navbar-brand" href="{SITEURL}">{SITENAME}</a>
@@ -30,10 +27,14 @@
 	<div class="container">
 		<div class="content">
 				<div class="row">
-					<div class="col-md-3">   <h4>Navigation</h4>{NAVIGATION: type=main&layout=alt}
+					<div class="col-md-3">
+					    <h4>Navigation</h4>
+					    {NAVIGATION: type=main&layout=alt}
 						{MENUAREA=10}
 					</div>
-					<div class="col-md-3">   <h4>Follow Us</h4>{XURL_ICONS: template=footer}
+					<div class="col-md-3">
+					    <h4>Follow Us</h4>
+					    {XURL_ICONS: template=footer}
 						{MENUAREA=11}
 					</div>
 					<div class="col-md-3">
@@ -45,17 +46,17 @@
 				</div>
 		</div>
 		<hr>
-		<div class="container">    {NAVIGATION: type=main&layout=footer} </div>
+		<div class="container">{NAVIGATION: type=main&layout=footer}</div>
 		<div class="container">
 			<p class="m-0 text-center text-white">{SITEDISCLAIMER}</p>
 		</div>
 	<!-- /.container -->
 	</div>
-</footer>';
+</footer>
 
 <!--- Optional custom footer template controlled by theme_shortcodes -->
 {---FOOTER---}
 
-
+{---MODAL---}
 <!-- Javascripts and other information are automatically added below here -->
 </body> <!-- This tag is not necessary and is ignored and replaced. Left here only as a reference -->
